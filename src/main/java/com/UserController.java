@@ -39,7 +39,7 @@ public class UserController implements UserDAO {
 
     @Override
     public Users save(Users user) {
-        return null;
+        return save(user);
     }
 
     @RequestMapping("/register")
