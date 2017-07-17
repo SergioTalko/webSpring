@@ -4,7 +4,7 @@
     <title>Title</title>
 </head>
 <body>
-Congrats, ${user.userName}, you are ${state}!
+Congrats, ${users.userName}, you are ${state}!
 
 </body>
 </html>

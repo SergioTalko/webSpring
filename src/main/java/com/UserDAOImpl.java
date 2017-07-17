@@ -1,7 +1,5 @@
-
 package com;
-
-
+/*import com.model.Users;*/
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,12 +12,31 @@ import javax.persistence.PersistenceContext;
 @Transactional
 public class UserDAOImpl implements UserDAO {
 
-    @Override
-    public Users save(Users user) {
-        return save(user);
+    private UserDAOImpl userDAOImpl;
+
+    public UserDAOImpl() {
+
     }
 
-    /* @Override
+    @PersistenceContext
+    EntityManager entityManager;
+
+
+    public UserDAOImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
+    //singleton
+    public UserDAOImpl createUserDaoImpl() {
+        if(userDAOImpl == null) {
+            userDAOImpl = new UserDAOImpl(entityManager);
+            return userDAOImpl;
+        }
+        else
+            return userDAOImpl;
+    }
+
+    /*@Override
     public Users getByEmail(String email) {
         String hql = "from Users t where t.email = :email";
         Query query = getSession().createQuery(hql);
@@ -34,10 +51,10 @@ public class UserDAOImpl implements UserDAO {
         query.setParameter("email", email);
         query.setParameter("password", password);
         return (Users) query.uniqueResult();
-    }
+    }*/
 
     @Override
     public Users save(Users users) {
-        return super.save(users);
-    }*/
+        return save(users);
+    }
 }
