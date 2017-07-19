@@ -1,12 +1,15 @@
-package com;
+package com.Entity;
+
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Transactional
 @Table(name = "USERS")
 public class Users {
-    private long id;
+    private Long id;
     private String email;
     private String userName;
     private String password;
@@ -19,27 +22,11 @@ public class Users {
 
     private String attributes;
 
-
     @Id
-    @SequenceGenerator(name = "TEST_SEQ", sequenceName = "USERS_SEQ", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TEST_SEQ")
-    public long getId() {
+    @SequenceGenerator(name = "USERS_SEQ", sequenceName = "USERS_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS_SEQ")
+    public Long getId() {
         return id;
-    }
-
-    @Column(name = "EMAIL")
-    public String getEmail() {
-        return email;
-    }
-
-    @Column(name = "USER_NAME")
-    public String getUserName() {
-        return userName;
-    }
-
-    @Column(name = "PASSWORD")
-    public String getPassword() {
-        return password;
     }
 
     @Column(name = "TYPE")
@@ -47,9 +34,19 @@ public class Users {
         return type;
     }
 
-    @Column(name = "CITY")
-    public String getCity() {
-        return city;
+    @Column(name = "EMAIL")
+    public String getEmail() {
+        return email;
+    }
+
+    @Column(name = "PASSWORD")
+    public String getPassword() {
+        return password;
+    }
+
+    @Column(name = "USER_NAME")
+    public String getUserName() {
+        return userName;
     }
 
     @Column(name = "PHONE")
@@ -57,14 +54,14 @@ public class Users {
         return phone;
     }
 
+    @Column(name = "CITY")
+    public String getCity() {
+        return city;
+    }
+
     @Column(name = "DATE_REGISTERED")
     public Date getRegistered() {
         return registered;
-    }
-
-    @Column(name = "LASE_ACTIVE_DATE")
-    public Date getLastLogin() {
-        return lastLogin;
     }
 
     @Column(name = "IS_ACTIVE")
@@ -72,17 +69,22 @@ public class Users {
         return isActive;
     }
 
+    @Column(name = "LAST_ACTIVE_DATE")
+    public Date getLastLogin() {
+        return lastLogin;
+    }
+
     @Column(name = "ATTRIBUTES")
     public String getAttributes() {
         return attributes;
     }
 
-
     public Users() {
     }
 
-    public Users(String email, String password, String type) {
+    public Users(String email, String userName, String password, String type) {
         this.email = email;
+        this.userName = userName;
         this.password = password;
         this.type = type;
 
@@ -91,7 +93,6 @@ public class Users {
         this.lastLogin = new Date();
 
     }
-
 
 
     public void setId(long id) {
